@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Theme Generator</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+    <!-- Main CSS file -->
+    <link rel="stylesheet" href="test.css">
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="assets/logo.svg" alt="CSS Theme Generator" class="logo">
+                    <h1>CSS Theme Generator</h1>
+                </div>
+                <div class="header-actions">
+                    <!-- Action Buttons -->
+                    <button id="saveBtn" class="btn btn-secondary">Save to File</button>
+                    <button id="loadBtn" class="btn btn-secondary">Load from File</button>
+                    <button id="shareBtn" class="btn btn-primary">Share</button>
+                    <button id="exportBtn" class="btn btn-success">Export CSS</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Controls Panel on the left -->
+            <aside class="controls-panel">
+                <div class="controls-header">
+                    <h2>Theme Controls</h2>
+                    <button id="resetBtn" class="btn btn-outline">Reset</button>
+                </div>
+
+                <div class="control-sections">
+                    <!-- Color Controls -->
+                    <div class="control-section">
+                        <h3>Colors</h3>
+                        <!-- Each group below has a color picker and text input -->
+                        <div class="control-group">
+                            <label for="primaryColor">Primary Color</label>
+                            <div class="color-input-group">
+                                <input type="color" id="primaryColor" value="#667eea">
+                                <input type="text" id="primaryColorText" value="#667eea">
+                            </div>
+                        </div>
+                        <!-- Repeat for other color inputs -->
+                        <div class="control-group">
+                            <label for="secondaryColor">Secondary Color</label>
+                            <div class="color-input-group">
+                                <input type="color" id="secondaryColor" value="#764ba2">
+                                <input type="text" id="secondaryColorText" value="#764ba2">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="accentColor">Accent Color</label>
+                            <div class="color-input-group">
+                                <input type="color" id="accentColor" value="#ff6b6b">
+                                <input type="text" id="accentColorText" value="#ff6b6b">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="backgroundColor">Background</label>
+                            <div class="color-input-group">
+                                <input type="color" id="backgroundColor" value="#ffffff">
+                                <input type="text" id="backgroundColorText" value="#ffffff">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="textColor">Text Color</label>
+                            <div class="color-input-group">
+                                <input type="color" id="textColor" value="#333333">
+                                <input type="text" id="textColorText" value="#333333">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typography Controls -->
+                    <div class="control-section">
+                        <h3>Typography</h3>
+                        <div class="control-group">
+                            <label for="fontFamily">Font Family</label>
+                            <select id="fontFamily">
+                                <!-- Options will be populated dynamically from JS -->
+                                <option value="Inter, sans-serif">Inter</option>
+                                <option value="Roboto, sans-serif">Roboto</option>
+                                <option value="Open Sans, sans-serif">Open Sans</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="fontSize">Base Font Size</label>
+                            <div class="range-input-group">
+                                <input type="range" id="fontSize" min="12" max="24" value="16">
+                                <span id="fontSizeValue">16px</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="lineHeight">Line Height</label>
+                            <div class="range-input-group">
+                                <input type="range" id="lineHeight" min="1" max="2" step="0.1" value="1.5">
+                                <span id="lineHeightValue">1.5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Layout Controls -->
+                    <div class="control-section">
+                        <h3>Layout</h3>
+                        <div class="control-group">
+                            <label for="borderRadius">Border Radius</label>
+                            <div class="range-input-group">
+                                <input type="range" id="borderRadius" min="0" max="20" value="8">
+                                <span id="borderRadiusValue">8px</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="spacing">Spacing Scale</label>
+                            <div class="range-input-group">
+                                <input type="range" id="spacing" min="0.5" max="2" step="0.1" value="1">
+                                <span id="spacingValue">1x</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="shadowIntensity">Shadow Intensity</label>
+                            <div class="range-input-group">
+                                <input type="range" id="shadowIntensity" min="0" max="1" step="0.1" value="0.1">
+                                <span id="shadowIntensityValue">0.1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Preview Section on the right -->
+            <main class="preview-panel">
+                <div class="preview-header">
+                    <h2>Live Preview</h2>
+                    <div class="preview-controls">
+                        <!-- Buttons to simulate different screen sizes -->
+                        <button id="mobileView" class="view-btn">Mobile</button>
+                        <button id="tabletView" class="view-btn">Tablet</button>
+                        <button id="desktopView" class="view-btn active">Desktop</button>
+                    </div>
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <!-- Sample content area to see how theme looks -->
+                    <div class="preview-content">
+                        <header class="sample-header">
+                            <nav class="sample-nav">
+                                <div class="sample-logo">Brand</div>
+                                <ul class="sample-menu">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </header>
+
+                        <section class="sample-hero">
+                            <h1>Welcome to Your Themed Website</h1>
+                            <p>This is a live preview of how your custom theme will look.</p>
+                            <button class="sample-cta">Get Started</button>
+                        </section>
+
+                        <section class="sample-content">
+                            <div class="sample-cards">
+                                <div class="sample-card">
+                                    <h3>Feature One</h3>
+                                    <p>This card demonstrates how your theme affects UI elements.</p>
+                                    <button class="sample-btn-secondary">Learn More</button>
+                                </div>
+                                <div class="sample-card">
+                                    <h3>Feature Two</h3>
+                                    <p>Typography, colors, and spacing all change dynamically.</p>
+                                    <button class="sample-btn-secondary">Learn More</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <footer class="sample-footer">
+                            <p>&copy; 2024 Your Themed Website. All rights reserved.</p>
+                        </footer>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Share Your Theme</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Copy this URL to share your theme:</p>
+                <div class="share-url-container">
+                    <input type="text" id="shareUrl" readonly>
+                    <button id="copyUrlBtn" class="btn btn-primary">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container for toast notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Link to JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
